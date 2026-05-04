@@ -354,23 +354,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     enum LibreOfficeAction { case install, textOnly, cancel }
 
     private func askLibreOfficeAction() -> LibreOfficeAction {
-        var action: LibreOfficeAction = .cancel
-        DispatchQueue.main.sync {
-            NSApp.activate(ignoringOtherApps: true)
-            let alert = NSAlert()
-            alert.messageText = NSLocalizedString("LibreOfficeMissingTitle", comment: "")
-            alert.informativeText = NSLocalizedString("LibreOfficeMissingBody", comment: "")
-            alert.alertStyle = .informational
-            alert.addButton(withTitle: NSLocalizedString("InstallLibreOffice", comment: ""))
-            alert.addButton(withTitle: NSLocalizedString("ConvertTextOnly", comment: ""))
-            alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-            switch alert.runModal() {
-            case .alertFirstButtonReturn:  action = .install
-            case .alertSecondButtonReturn: action = .textOnly
-            default:                       action = .cancel
-            }
+        NSApp.activate(ignoringOtherApps: true)
+        let alert = NSAlert()
+        alert.messageText = NSLocalizedString("LibreOfficeMissingTitle", comment: "")
+        alert.informativeText = NSLocalizedString("LibreOfficeMissingBody", comment: "")
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: NSLocalizedString("InstallLibreOffice", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("ConvertTextOnly", comment: ""))
+        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
+        switch alert.runModal() {
+        case .alertFirstButtonReturn:  return .install
+        case .alertSecondButtonReturn: return .textOnly
+        default:                       return .cancel
         }
-        return action
     }
 
     // MARK: - Instructions window
