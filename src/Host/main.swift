@@ -69,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let action = askLibreOfficeAction()
             switch action {
             case .install:
-                if let libreURL = URL(string: "https://www.libreoffice.org/download/download/") {
+                if let libreURL = URL(string: "https://www.libreoffice.org/download/") {
                     NSWorkspace.shared.open(libreURL)
                 }
                 terminateLater(0.2)

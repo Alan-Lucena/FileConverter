@@ -69,7 +69,7 @@ The submenu hides options that don't make sense for the current selection. DOCX 
 | PDF → DOCX | LibreOffice if installed; otherwise prompts to install or fall back to text-only extraction. |
 | DOCX → DOCX, PDF → PDF | Direct copy. |
 
-LibreOffice (free, [libreoffice.org](https://www.libreoffice.org/download/download/)) is detected automatically at `/Applications/LibreOffice.app/Contents/MacOS/soffice`, `/opt/homebrew/bin/soffice`, or `/usr/local/bin/soffice`. With it installed, DOCX ⇄ PDF preserves images, formatting, and layout. Without it, native fallback handles text and basic formatting only.
+LibreOffice (free, [libreoffice.org](https://www.libreoffice.org/download/)) is detected automatically at `/Applications/LibreOffice.app/Contents/MacOS/soffice`, `/opt/homebrew/bin/soffice`, or `/usr/local/bin/soffice`. With it installed, DOCX ⇄ PDF preserves images, formatting, and layout. Without it, native fallback handles text and basic formatting only.
 
 ## Languages
 
