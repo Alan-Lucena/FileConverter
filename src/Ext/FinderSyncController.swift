@@ -6,6 +6,18 @@ class FinderSyncController: FIFinderSync {
 
     let formats: [String] = ["PNG", "JPG", "PDF", "TIFF", "BMP", "GIF", "HEIC"]
 
+    /// Map a file extension (lowercased, no dot) to the format title that
+    /// represents that extension in the submenu, if any.
+    let extensionToFormat: [String: String] = [
+        "png": "PNG",
+        "jpg": "JPG", "jpeg": "JPG", "jpe": "JPG",
+        "pdf": "PDF",
+        "tiff": "TIFF", "tif": "TIFF",
+        "bmp": "BMP",
+        "gif": "GIF",
+        "heic": "HEIC", "heif": "HEIC",
+    ]
+
     let imageExtensions: Set<String> = [
         "heic", "heif", "jpg", "jpeg", "jpe",
         "png", "gif", "tiff", "tif", "bmp",
@@ -32,11 +44,14 @@ class FinderSyncController: FIFinderSync {
         lastPaths = paths
         pathsLock.unlock()
 
+        let visibleFormats = formatsExcludingSelectionFormat(urls: urls)
+        guard !visibleFormats.isEmpty else { return nil }
+
         let menuTitle = NSLocalizedString("ConvertFile", comment: "Submenu title")
         let menu = NSMenu(title: "")
         let parent = NSMenuItem(title: menuTitle, action: nil, keyEquivalent: "")
         let submenu = NSMenu(title: menuTitle)
-        for (index, fmt) in formats.enumerated() {
+        for (index, fmt) in visibleFormats {
             let item = NSMenuItem(
                 title: fmt,
                 action: #selector(convertSelected(_:)),
@@ -49,6 +64,22 @@ class FinderSyncController: FIFinderSync {
         parent.submenu = submenu
         menu.addItem(parent)
         return menu
+    }
+
+    /// Returns the formats to show in the submenu paired with their original
+    /// index in `formats`. The format that matches the selection's extension
+    /// is excluded when every selected file shares that same format.
+    private func formatsExcludingSelectionFormat(urls: [URL]) -> [(Int, String)] {
+        let selectionFormats = Set(urls.compactMap { extensionToFormat[$0.pathExtension.lowercased()] })
+        let exclude: String?
+        if selectionFormats.count == 1 {
+            exclude = selectionFormats.first
+        } else {
+            exclude = nil
+        }
+        return formats.enumerated().compactMap { index, fmt in
+            fmt == exclude ? nil : (index, fmt)
+        }
     }
 
     private func isImage(_ url: URL) -> Bool {
