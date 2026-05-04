@@ -1,0 +1,4 @@
+"ConvertFile" = "Dosyayı dönüştür";
+"WindowTitle" = "Dosya Dönüştürücü";
+"OpenSystemSettings" = "Sistem Ayarlarını Aç";
+"Instructions" = "Uzantı yüklendi ve aktif.\n\nEtkinleştir/devre dışı bırak:\nSistem Ayarları > Genel > Giriş Öğeleri ve Uzantılar\n\"Finder Uzantıları\" veya \"Eklenen Uzantılar\" bölümü.\n\nKullanım:\nFinder'da görüntü(ler)e sağ tıkla\n> Dosyayı dönüştür > biçim seç.\n\nDosyalar orijinalin yanına kaydedilir. Zaten varsa \"(1)\" eklenir.";

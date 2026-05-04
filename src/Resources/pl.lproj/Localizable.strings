@@ -1,0 +1,4 @@
+"ConvertFile" = "Konwertuj plik";
+"WindowTitle" = "Konwerter plików";
+"OpenSystemSettings" = "Otwórz ustawienia systemowe";
+"Instructions" = "Rozszerzenie zainstalowane i aktywne.\n\nWłącz/wyłącz w:\nUstawienia systemowe > Ogólne > Elementy logowania i rozszerzenia\nSekcja \"Rozszerzenia Findera\" lub \"Dodane rozszerzenia\".\n\nUżycie:\nKliknij prawym przyciskiem obraz(y) w Finderze\n> Konwertuj plik > wybierz format.\n\nPliki są zapisywane obok oryginału. Jeśli plik już istnieje, dodawane jest \"(1)\".";

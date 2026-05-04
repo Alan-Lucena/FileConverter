@@ -1,0 +1,4 @@
+"ConvertFile" = "Converti file";
+"WindowTitle" = "Convertitore di file";
+"OpenSystemSettings" = "Apri Impostazioni di Sistema";
+"Instructions" = "Estensione installata e attiva.\n\nAttiva/disattiva in:\nImpostazioni di Sistema > Generali > Elementi di login ed estensioni\nSezione \"Estensioni del Finder\" o \"Estensioni aggiunte\".\n\nUso:\nClic destro su immagini nel Finder\n> Converti file > scegli formato.\n\nI file vengono salvati accanto all'originale. Se esiste già, viene aggiunto \"(1)\".";

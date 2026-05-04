@@ -1,0 +1,4 @@
+"ConvertFile" = "Datei konvertieren";
+"WindowTitle" = "Dateikonverter";
+"OpenSystemSettings" = "Systemeinstellungen öffnen";
+"Instructions" = "Erweiterung installiert und aktiv.\n\nAktivieren/deaktivieren unter:\nSystemeinstellungen > Allgemein > Anmeldeobjekte & Erweiterungen\nAbschnitt „Finder-Erweiterungen\" oder „Hinzugefügte Erweiterungen\".\n\nVerwendung:\nRechtsklick auf Bild(er) im Finder\n> Datei konvertieren > Format wählen.\n\nDateien werden neben dem Original gespeichert. Wenn bereits eine Datei existiert, wird „(1)\" angehängt.";

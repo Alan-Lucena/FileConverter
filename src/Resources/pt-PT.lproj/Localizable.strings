@@ -1,0 +1,4 @@
+"ConvertFile" = "Converter ficheiro";
+"WindowTitle" = "Conversor de ficheiros";
+"OpenSystemSettings" = "Abrir Definições do Sistema";
+"Instructions" = "Extensão instalada e ativa.\n\nAtivar/desativar em:\nDefinições do Sistema > Geral > Itens de Arranque e Extensões\nSecção \"Extensões do Finder\" ou \"Extensões adicionadas\".\n\nUtilização:\nClique direito em imagem(ns) no Finder\n> Converter ficheiro > escolher formato.\n\nOs ficheiros ficam junto ao original. Se já existir, é adicionado \"(1)\".";

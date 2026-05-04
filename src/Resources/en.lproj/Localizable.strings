@@ -1,0 +1,4 @@
+"ConvertFile" = "Convert File";
+"WindowTitle" = "File Converter";
+"OpenSystemSettings" = "Open System Settings";
+"Instructions" = "Extension installed and active.\n\nEnable/disable in:\nSystem Settings > General > Login Items & Extensions\n\"Finder Extensions\" or \"Added Extensions\" section.\n\nUsage:\nRight-click on image(s) in Finder\n> Convert File > choose format.\n\nFiles are saved next to the original. If a file already exists, \"(1)\" is appended.";
