@@ -241,14 +241,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func convertWithLibreOffice(input: URL, outURL: URL, soffice: String) -> Bool {
         let dir = outURL.deletingLastPathComponent()
         let targetExt = outURL.pathExtension
-        let proc = Process()
-        proc.executableURL = URL(fileURLWithPath: soffice)
-        proc.arguments = [
-            "--headless",
+        let inputExt = input.pathExtension.lowercased()
+
+        var args = ["--headless"]
+        // PDF input has to be opened by the Writer PDF import filter to be
+        // exportable to DOCX/ODT; otherwise soffice picks Draw and fails with
+        // "no export filter for ... aborting".
+        if inputExt == "pdf" {
+            args.append("--infilter=writer_pdf_import")
+        }
+        args.append(contentsOf: [
             "--convert-to", targetExt,
             "--outdir", dir.path,
             input.path
-        ]
+        ])
+
+        let proc = Process()
+        proc.executableURL = URL(fileURLWithPath: soffice)
+        proc.arguments = args
         proc.standardOutput = Pipe()
         proc.standardError = Pipe()
         do {
