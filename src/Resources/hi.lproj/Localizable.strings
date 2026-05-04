@@ -2,3 +2,8 @@
 "WindowTitle" = "फ़ाइल कन्वर्टर";
 "OpenSystemSettings" = "सिस्टम सेटिंग्स खोलें";
 "Instructions" = "एक्सटेंशन इंस्टॉल और सक्रिय है।\n\nसक्षम/अक्षम करें:\nसिस्टम सेटिंग्स > सामान्य > लॉगिन आइटम और एक्सटेंशन\n\"फ़ाइंडर एक्सटेंशन\" या \"जोड़े गए एक्सटेंशन\" अनुभाग।\n\nउपयोग:\nफ़ाइंडर में छवि(यों) पर दायाँ-क्लिक करें\n> फ़ाइल बदलें > प्रारूप चुनें।\n\nफ़ाइलें मूल के बगल में सहेजी जाती हैं। यदि पहले से मौजूद है, तो \"(1)\" जोड़ा जाता है।";
+"InstallLibreOffice" = "Install LibreOffice";
+"ConvertTextOnly" = "Convert text only";
+"Cancel" = "Cancel";
+"LibreOfficeMissingTitle" = "LibreOffice not found";
+"LibreOfficeMissingBody" = "LibreOffice gives the best PDF to DOCX conversion (preserves images, formatting, and layout). Install it from libreoffice.org, or use the basic text-only converter built in.";

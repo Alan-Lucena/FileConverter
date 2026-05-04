@@ -2,3 +2,8 @@
 "WindowTitle" = "檔案轉換器";
 "OpenSystemSettings" = "打開系統設定";
 "Instructions" = "擴充功能已安裝並啟用。\n\n啟用/停用：\n系統設定 > 一般 > 登入項目與擴充功能\n「Finder 擴充功能」或「已加入的擴充功能」區段。\n\n使用方式：\n在 Finder 中以右鍵點按圖像\n> 轉換檔案 > 選擇格式。\n\n轉換後的檔案會儲存在原始檔案旁邊。如果已存在，會加上「(1)」。";
+"InstallLibreOffice" = "Install LibreOffice";
+"ConvertTextOnly" = "Convert text only";
+"Cancel" = "Cancel";
+"LibreOfficeMissingTitle" = "LibreOffice not found";
+"LibreOfficeMissingBody" = "LibreOffice gives the best PDF to DOCX conversion (preserves images, formatting, and layout). Install it from libreoffice.org, or use the basic text-only converter built in.";

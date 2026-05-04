@@ -1,6 +1,6 @@
 # File Converter
 
-A native macOS Finder extension that adds a **Convert File** submenu to the right-click context menu when you select images or PDFs. Convert to PNG, JPG, PDF, TIFF, BMP, GIF or HEIC with a single click. Files land next to the original.
+A native macOS Finder extension that adds a **Convert File** submenu to the right-click context menu when you select images, PDFs, or DOCX files. Convert to PNG, JPG, PDF, TIFF, BMP, GIF, HEIC or DOCX with a single click. Files land next to the original.
 
 No Automator. No dialogs. No external apps. Native submenu, instant.
 
@@ -53,11 +53,23 @@ System Settings > General > Login Items & Extensions > Finder Extensions > toggl
 
 | Read | Write |
 |---|---|
-| HEIC, HEIF, JPG, PNG, GIF, TIFF, BMP, WebP, JP2, RAW, DNG, PSD, ICO, ICNS, PDF | PNG, JPG, PDF, TIFF, BMP, GIF, HEIC |
+| HEIC, HEIF, JPG, PNG, GIF, TIFF, BMP, WebP, JP2, RAW, DNG, PSD, ICO, ICNS, PDF, DOCX, DOC | PNG, JPG, PDF, TIFF, BMP, GIF, HEIC, DOCX |
 
 WebP write isn't supported because `ImageIO` on macOS doesn't ship a WebP encoder.
 
 PDF input is rendered at 2× scale via `PDFKit`. Only the first page is converted when targeting a raster format.
+
+The submenu hides options that don't make sense for the current selection. DOCX only appears for PDF/DOCX selections; image formats don't appear for a DOCX-only selection.
+
+### DOCX conversions
+
+| From → To | Method |
+|---|---|
+| DOCX → PDF | LibreOffice if installed; otherwise native (`NSAttributedString` + Core Text). |
+| PDF → DOCX | LibreOffice if installed; otherwise prompts to install or fall back to text-only extraction. |
+| DOCX → DOCX, PDF → PDF | Direct copy. |
+
+LibreOffice (free, [libreoffice.org](https://www.libreoffice.org/download/download/)) is detected automatically at `/Applications/LibreOffice.app/Contents/MacOS/soffice`, `/opt/homebrew/bin/soffice`, or `/usr/local/bin/soffice`. With it installed, DOCX ⇄ PDF preserves images, formatting, and layout. Without it, native fallback handles text and basic formatting only.
 
 ## Languages
 

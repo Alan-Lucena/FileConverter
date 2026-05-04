@@ -2,3 +2,8 @@
 "WindowTitle" = "ファイル変換";
 "OpenSystemSettings" = "システム設定を開く";
 "Instructions" = "拡張機能はインストール済みで有効です。\n\n有効/無効の切り替え:\nシステム設定 > 一般 > ログイン項目と機能拡張\n「Finder機能拡張」または「追加された機能拡張」セクション。\n\n使い方:\nFinderで画像を右クリック\n> ファイルを変換 > フォーマットを選択。\n\n変換されたファイルは元のファイルの隣に保存されます。すでに存在する場合は「(1)」が追加されます。";
+"InstallLibreOffice" = "LibreOfficeをインストール";
+"ConvertTextOnly" = "テキストのみ変換";
+"Cancel" = "キャンセル";
+"LibreOfficeMissingTitle" = "LibreOfficeが見つかりません";
+"LibreOfficeMissingBody" = "LibreOfficeはPDFからDOCXへの最高の変換を提供します(画像、書式、レイアウトを保持)。libreoffice.orgからインストールするか、内蔵の基本的なテキストのみのコンバーターを使用してください。";

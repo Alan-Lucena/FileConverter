@@ -2,3 +2,8 @@
 "WindowTitle" = "File Converter";
 "OpenSystemSettings" = "Open System Settings";
 "Instructions" = "Extension installed and active.\n\nEnable/disable in:\nSystem Settings > General > Login Items & Extensions\n\"Finder Extensions\" or \"Added Extensions\" section.\n\nUsage:\nRight-click on image(s) in Finder\n> Convert File > choose format.\n\nFiles are saved next to the original. If a file already exists, \"(1)\" is appended.";
+"InstallLibreOffice" = "Install LibreOffice";
+"ConvertTextOnly" = "Convert text only";
+"Cancel" = "Cancel";
+"LibreOfficeMissingTitle" = "LibreOffice not found";
+"LibreOfficeMissingBody" = "LibreOffice gives the best PDF to DOCX conversion (preserves images, formatting, and layout). Install it from libreoffice.org, or use the basic text-only converter built in.";

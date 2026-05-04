@@ -2,3 +2,8 @@
 "WindowTitle" = "محول الملفات";
 "OpenSystemSettings" = "فتح إعدادات النظام";
 "Instructions" = "تم تثبيت الإضافة وتفعيلها.\n\nتفعيل/إلغاء التفعيل في:\nإعدادات النظام > عام > عناصر تسجيل الدخول والإضافات\nقسم \"إضافات الباحث\" أو \"الإضافات المضافة\".\n\nالاستخدام:\nانقر بزر الفأرة الأيمن على الصورة (الصور) في الباحث\n> تحويل الملف > اختر التنسيق.\n\nيتم حفظ الملفات بجانب الأصل. إذا كان الملف موجوداً، تتم إضافة \"(1)\".";
+"InstallLibreOffice" = "Install LibreOffice";
+"ConvertTextOnly" = "Convert text only";
+"Cancel" = "Cancel";
+"LibreOfficeMissingTitle" = "LibreOffice not found";
+"LibreOfficeMissingBody" = "LibreOffice gives the best PDF to DOCX conversion (preserves images, formatting, and layout). Install it from libreoffice.org, or use the basic text-only converter built in.";

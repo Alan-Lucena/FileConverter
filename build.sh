@@ -14,7 +14,7 @@ mkdir -p build
 echo "Compiling host..."
 swiftc -sdk "$SDK" -target "$TARGET" \
     -framework AppKit -framework Foundation \
-    -framework PDFKit -framework ImageIO -framework UniformTypeIdentifiers \
+    -framework PDFKit -framework ImageIO -framework UniformTypeIdentifiers -framework CoreText \
     -o build/FileConverter \
     src/Host/main.swift
 

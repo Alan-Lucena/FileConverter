@@ -4,7 +4,10 @@ import FinderSync
 @objc(FinderSyncController)
 class FinderSyncController: FIFinderSync {
 
-    let formats: [String] = ["PNG", "JPG", "PDF", "TIFF", "BMP", "GIF", "HEIC"]
+    let formats: [String] = ["PNG", "JPG", "PDF", "TIFF", "BMP", "GIF", "HEIC", "DOCX"]
+
+    /// Output formats that require pixel data (rasters).
+    let imageFormats: Set<String> = ["PNG", "JPG", "TIFF", "BMP", "GIF", "HEIC"]
 
     /// Map a file extension (lowercased, no dot) to the format title that
     /// represents that extension in the submenu, if any.
@@ -16,14 +19,19 @@ class FinderSyncController: FIFinderSync {
         "bmp": "BMP",
         "gif": "GIF",
         "heic": "HEIC", "heif": "HEIC",
+        "docx": "DOCX", "doc": "DOCX",
     ]
 
-    let imageExtensions: Set<String> = [
+    /// Files we offer the menu for.
+    let supportedExtensions: Set<String> = [
         "heic", "heif", "jpg", "jpeg", "jpe",
         "png", "gif", "tiff", "tif", "bmp",
         "webp", "jp2", "raw", "dng", "psd", "ico", "icns",
-        "pdf"
+        "pdf", "docx", "doc"
     ]
+
+    /// Extensions that are documents (not images).
+    let documentExtensions: Set<String> = ["pdf", "docx", "doc"]
 
     private let pathsLock = NSLock()
     private var lastPaths: [String] = []
@@ -37,7 +45,7 @@ class FinderSyncController: FIFinderSync {
         guard menuKind == .contextualMenuForItems else { return nil }
         guard let urls = FIFinderSyncController.default().selectedItemURLs(),
               !urls.isEmpty,
-              urls.allSatisfy({ isImage($0) }) else { return nil }
+              urls.allSatisfy({ isSupported($0) }) else { return nil }
 
         let paths = urls.map { $0.path }
         pathsLock.lock()
@@ -67,23 +75,36 @@ class FinderSyncController: FIFinderSync {
     }
 
     /// Returns the formats to show in the submenu paired with their original
-    /// index in `formats`. The format that matches the selection's extension
-    /// is excluded when every selected file shares that same format.
+    /// index in `formats`. Filtering rules:
+    /// - The format that matches the selection's own extension is excluded
+    ///   when every selected file shares that same format.
+    /// - DOCX is offered only when every selected file is a PDF or DOCX
+    ///   (image -> DOCX would require OCR, out of scope).
+    /// - Image formats are excluded when every selected file is a DOCX
+    ///   (DOCX -> image isn't a meaningful conversion here).
     private func formatsExcludingSelectionFormat(urls: [URL]) -> [(Int, String)] {
-        let selectionFormats = Set(urls.compactMap { extensionToFormat[$0.pathExtension.lowercased()] })
+        let exts = urls.map { $0.pathExtension.lowercased() }
+        let selectionFormats = Set(exts.compactMap { extensionToFormat[$0] })
         let exclude: String?
         if selectionFormats.count == 1 {
             exclude = selectionFormats.first
         } else {
             exclude = nil
         }
+
+        let allDocsOrPDF = exts.allSatisfy { documentExtensions.contains($0) }
+        let allDocx = exts.allSatisfy { $0 == "docx" || $0 == "doc" }
+
         return formats.enumerated().compactMap { index, fmt in
-            fmt == exclude ? nil : (index, fmt)
+            if fmt == exclude { return nil }
+            if fmt == "DOCX" && !allDocsOrPDF { return nil }
+            if allDocx && imageFormats.contains(fmt) { return nil }
+            return (index, fmt)
         }
     }
 
-    private func isImage(_ url: URL) -> Bool {
-        return imageExtensions.contains(url.pathExtension.lowercased())
+    private func isSupported(_ url: URL) -> Bool {
+        return supportedExtensions.contains(url.pathExtension.lowercased())
     }
 
     @objc func convertSelected(_ sender: NSMenuItem) {

@@ -2,3 +2,8 @@
 "WindowTitle" = "文件转换器";
 "OpenSystemSettings" = "打开系统设置";
 "Instructions" = "扩展已安装并启用。\n\n启用/停用：\n系统设置 > 通用 > 登录项与扩展\n\"访达扩展\"或\"已添加的扩展\"区段。\n\n使用方法：\n在访达中右键点击图像\n> 转换文件 > 选择格式。\n\n转换后的文件保存在原文件旁边。如已存在，会添加\"(1)\"。";
+"InstallLibreOffice" = "Install LibreOffice";
+"ConvertTextOnly" = "Convert text only";
+"Cancel" = "Cancel";
+"LibreOfficeMissingTitle" = "LibreOffice not found";
+"LibreOfficeMissingBody" = "LibreOffice gives the best PDF to DOCX conversion (preserves images, formatting, and layout). Install it from libreoffice.org, or use the basic text-only converter built in.";

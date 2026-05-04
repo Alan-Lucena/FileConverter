@@ -2,3 +2,8 @@
 "WindowTitle" = "Bestandsconverter";
 "OpenSystemSettings" = "Systeeminstellingen openen";
 "Instructions" = "Extensie geïnstalleerd en actief.\n\nIn-/uitschakelen in:\nSysteeminstellingen > Algemeen > Inlogonderdelen en extensies\nGedeelte 'Finder-extensies' of 'Toegevoegde extensies'.\n\nGebruik:\nRechterklik op afbeelding(en) in Finder\n> Bestand converteren > kies formaat.\n\nBestanden komen naast het origineel. Als het bestand al bestaat, wordt '(1)' toegevoegd.";
+"InstallLibreOffice" = "Install LibreOffice";
+"ConvertTextOnly" = "Convert text only";
+"Cancel" = "Cancel";
+"LibreOfficeMissingTitle" = "LibreOffice not found";
+"LibreOfficeMissingBody" = "LibreOffice gives the best PDF to DOCX conversion (preserves images, formatting, and layout). Install it from libreoffice.org, or use the basic text-only converter built in.";
