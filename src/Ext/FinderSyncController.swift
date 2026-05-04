@@ -9,7 +9,8 @@ class FinderSyncController: FIFinderSync {
     let imageExtensions: Set<String> = [
         "heic", "heif", "jpg", "jpeg", "jpe",
         "png", "gif", "tiff", "tif", "bmp",
-        "webp", "jp2", "raw", "dng", "psd", "ico", "icns"
+        "webp", "jp2", "raw", "dng", "psd", "ico", "icns",
+        "pdf"
     ]
 
     private let pathsLock = NSLock()

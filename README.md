@@ -1,8 +1,10 @@
 # File Converter
 
-A native macOS Finder extension that adds a **Convert File** submenu to the right-click context menu when you select images. Convert to PNG, JPG, PDF, TIFF, BMP, GIF or HEIC with a single click. Files land next to the original.
+A native macOS Finder extension that adds a **Convert File** submenu to the right-click context menu when you select images or PDFs. Convert to PNG, JPG, PDF, TIFF, BMP, GIF or HEIC with a single click. Files land next to the original.
 
 No Automator. No dialogs. No external apps. Native submenu, instant.
+
+![File Converter context menu in Finder](assets/menu.png)
 
 ## Why this exists
 
@@ -51,9 +53,11 @@ System Settings > General > Login Items & Extensions > Finder Extensions > toggl
 
 | Read | Write |
 |---|---|
-| HEIC, HEIF, JPG, PNG, GIF, TIFF, BMP, WebP, JP2, RAW, DNG, PSD, ICO, ICNS | PNG, JPG, PDF, TIFF, BMP, GIF, HEIC |
+| HEIC, HEIF, JPG, PNG, GIF, TIFF, BMP, WebP, JP2, RAW, DNG, PSD, ICO, ICNS, PDF | PNG, JPG, PDF, TIFF, BMP, GIF, HEIC |
 
 WebP write isn't supported because `ImageIO` on macOS doesn't ship a WebP encoder.
+
+PDF input is rendered at 2× scale via `PDFKit`. Only the first page is converted when targeting a raster format.
 
 ## Languages
 

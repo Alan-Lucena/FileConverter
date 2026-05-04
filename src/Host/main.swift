@@ -76,11 +76,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for path in paths {
             let inURL = URL(fileURLWithPath: path)
             let outURL = uniqueOutput(near: inURL, ext: format.ext)
+            let isPDFInput = inURL.pathExtension.lowercased() == "pdf"
             let ok: Bool
             if format.isPDF {
-                ok = convertToPDF(url: inURL, outURL: outURL)
+                if isPDFInput {
+                    ok = (try? FileManager.default.copyItem(at: inURL, to: outURL)) != nil
+                } else {
+                    ok = convertImageToPDF(url: inURL, outURL: outURL)
+                }
             } else if let type = format.utType {
-                ok = convertWithImageIO(url: inURL, outURL: outURL, type: type)
+                if isPDFInput {
+                    ok = convertPDFToImage(url: inURL, outURL: outURL, type: type)
+                } else {
+                    ok = convertWithImageIO(url: inURL, outURL: outURL, type: type)
+                }
             } else {
                 ok = false
             }
@@ -108,12 +117,46 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return CGImageDestinationFinalize(dest)
     }
 
-    private func convertToPDF(url: URL, outURL: URL) -> Bool {
+    private func convertImageToPDF(url: URL, outURL: URL) -> Bool {
         guard let img = NSImage(contentsOf: url) else { return false }
         let pdf = PDFDocument()
         guard let page = PDFPage(image: img) else { return false }
         pdf.insert(page, at: 0)
         return pdf.write(to: outURL)
+    }
+
+    private func convertPDFToImage(url: URL, outURL: URL, type: UTType) -> Bool {
+        guard let pdf = PDFDocument(url: url),
+              let page = pdf.page(at: 0) else { return false }
+
+        let pageBounds = page.bounds(for: .mediaBox)
+        let scale: CGFloat = 2.0
+        let width = Int(pageBounds.width * scale)
+        let height = Int(pageBounds.height * scale)
+        guard width > 0, height > 0 else { return false }
+
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGImageAlphaInfo.premultipliedFirst.rawValue
+            | CGBitmapInfo.byteOrder32Little.rawValue
+        guard let context = CGContext(
+            data: nil,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: 0,
+            space: colorSpace,
+            bitmapInfo: bitmapInfo
+        ) else { return false }
+
+        context.setFillColor(CGColor(red: 1, green: 1, blue: 1, alpha: 1))
+        context.fill(CGRect(x: 0, y: 0, width: width, height: height))
+        context.scaleBy(x: scale, y: scale)
+        page.draw(with: .mediaBox, to: context)
+
+        guard let cgImage = context.makeImage() else { return false }
+        guard let dest = CGImageDestinationCreateWithURL(outURL as CFURL, type.identifier as CFString, 1, nil) else { return false }
+        CGImageDestinationAddImage(dest, cgImage, nil)
+        return CGImageDestinationFinalize(dest)
     }
 
     private func showInstructionsWindow() {
